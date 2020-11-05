@@ -1,0 +1,236 @@
+% IfF LaTeX Vorlage für Projektberichte
+% getestet mit MiKTeX 2.9
+% von Jan Häfele
+% 19.03.2012
+% Weitergabe ohne Erlaubnis untersagt
+
+% --- PRÄ„AMBEL ---
+
+\documentclass[a4paper,DIV=18,BCOR=5mm,twoside=false,11pt,parskip=half,headsepline,headings=normal]{scrbook}
+% KOMA-Klasse scrbook
+% Seitenformat: DIN A4
+% Satzspiegel: DIV 18
+% Binderand: 5mm
+% einseitig
+% Schriftgröße: 11pt
+% halber Abstand zwischen Absätzen
+% Trennlinie unter Kopfzeile
+
+% Pakete
+\usepackage[latin1]{inputenc} % Eingabe von Sonderzeichen
+\usepackage[T1]{fontenc} % Moderner Schriftsatz
+\usepackage[ngerman]{babel} % Anpassung des Dokuments auf neue, deutsche Rechtschreibung
+\usepackage[osf,sc]{mathpazo} % Schriftart Mathpazo für den Mathematikmodus
+\usepackage[plainheadsepline]{scrpage2} % scrpage2 Paket
+\usepackage{pdfpages} % Einbinden mehrseitiger PDF Dokumente
+\usepackage{graphicx} % Einbinden von Grafiken, bevorzugt als Vektorgrafik im PDF-Format
+\usepackage[labelfont=bf]{caption} % fettgedruckte Captions
+\usepackage{hyperref} % erzeugt Verweise im Dokument
+\usepackage[all]{hypcap} % Hyperrefverweise führen immer an den Kopf der Verweisstellen
+\usepackage[autostyle]{csquotes} % Zitieren mit \enquote{}
+\usepackage[style=alphabetic,sorting=nyt,maxnames=2,maxbibnames=99]{biblatex} % Literaturverzeichnis mit dem biblatex Paket
+\usepackage[intoc]{nomencl} % Formelverzeichnis mit dem nomencl Paket, benötigt makeindex
+\usepackage[ngerman=ngerman-x-latest]{hyphsubst} % Hinzufügen eigener Worttrennungsregeln
+\usepackage{flafter} % Floatumgebungen werden erst nach Erstellungspunkt angezeigt
+\usepackage[morefloats=10]{morefloats} % erlaubt die Einbindung von mehr Floatumgebungen im PDF-Dokument
+\usepackage[decimalsymbol=comma]{siunitx} % Werte mit Einheit können über den Befehl \SI{Wert}{Einheit} dargestellt werden
+\usepackage{listings} % zum Einbinden von Quellcode
+\usepackage{amssymb} % zusätzliche Symbole
+\usepackage{amsmath} % zusätzliche Symbole
+\usepackage{dsfont} % zusätzliche Symbole
+\usepackage{trfsigns} % zusätzliche Symbole
+
+% Schriftart und Zeilenabstand
+\setkomafont{dictum}{\normalfont\normalcolor\rmfamily\small}
+\renewcommand*\sectfont{\normalcolor\rmfamily\bfseries}
+\renewcommand*\descfont{\rmfamily\bfseries}
+\linespread{1.08}
+
+% Definition eigener Worttrennungsregeln (bei Problemen mit überhängenden Zeilen)
+\hyphenation{} % Wörter hintereinander ohne Komma eingeben, Silbentrennung durch "-", z.B. "E-Ma-schi-ne"
+
+% Definition mathematischer Funktionen, die standardmäßig nicht in LaTeX enthalten sind
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\imag}{Im}
+\DeclareMathOperator{\real}{Re}
+
+% Kopfzeile Einstellungen
+\automark{chapter}
+\pagestyle{scrheadings}
+\renewcommand*{\chapterpagestyle}{plain}
+\clearscrheadfoot
+\ihead{\headmark}
+\ohead[Seite \pagemark]{Seite \pagemark}
+
+% Tabellen Einstellungen
+\setlength{\tabcolsep}{5pt}
+\renewcommand*{\arraystretch}{1.2}
+\setlength{\itemsep}{0ex plus0.2ex}
+\setlength{\parindent}{0ex}
+\setlength{\belowcaptionskip}{0.4cm}
+\setlength{\abovecaptionskip}{0.4cm}
+
+% Formelverzeichnis Einstellungen, siehe ftp://ftp.fu-berlin.de/tex/CTAN/macros/latex/contrib/nomencl/nomencl.pdf
+\renewcommand*{\nomname}{Häufig verwendete Formelzeichen}
+\setlength{\nomlabelwidth}{.2\hsize}
+\renewcommand*{\nomlabel}[1]{#1 \hfill}
+\setlength{\nomitemsep}{-\parsep}
+\makenomenclature
+
+% Literaturverzeichnis Einstellungen, siehe ftp://www.ctan.org/ctan/macros/latex/exptl/biblatex/doc/biblatex.pdf
+\bibliography{bibliography}
+\renewcommand*{\bibname}{Literaturverzeichnis}
+\renewcommand*{\labelnamepunct}{\addcolon\addspace}
+\renewcommand*{\labelalphaothers}{\textsuperscript{+}}
+\renewcommand*{\mkbibnamelast}{\scshape}
+\renewcommand*{\mkbibnamefirst}{\scshape}
+\DefineBibliographyStrings{ngerman}{andothers={et\adddot\ al\adddot}}
+\DefineBibliographyStrings{ngerman}{phdthesis={Dissertation}}
+
+% Hyperref Einstellungen, siehe ftp://ftp.fu-berlin.de/tex/CTAN/macros/latex/contrib/hyperref/hyperref.pdf
+\hypersetup{
+pdftitle={Titel der Arbeit}, % Titel der Arbeit
+pdfsubject={Art der Arbeit}, % Projektarbeit / Studienarbeit/ Diplomarbeit / Bachelorarbeit / Masterarbeit
+pdfauthor={Name}, % Name
+pdfkeywords={}, % Stichwörter im Zusammenhang mit der Arbeit
+pdfproducer={pdfLaTeX},
+pdfborder={0 0 0},
+bookmarksnumbered}
+
+% Listings Einstellungen
+\lstset{language=Matlab,numbers=left, numberstyle=\tiny, stepnumber=1, numbersep=5pt} % Voreinstellung für MATLAB-Code
+
+% --- DOKUMENT ---
+
+\begin{document}
+
+\frontmatter
+
+\pagenumbering{roman}
+\setcounter{page}{1}
+
+% Titelseite
+\begin{titlepage}
+
+\vspace*{-30mm} 
+\hfill
+\begin{minipage}{0.45\textwidth}
+\includegraphics{fig_tubs.pdf} % Logo der TU Braunschweig
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\includegraphics{fig_iff.pdf} % Logo des IfF
+\end{minipage}
+
+\vspace{60mm}
+\begin{center}
+{\huge{{\textsf{Titel\\}}}} % Titel der Arbeit
+
+\vfill
+
+%\includegraphics{fig_titel.pdf} % ggf. Titelbild
+\end{center}
+
+\begin{tabular}{l}
+\Large Art der Arbeit
+\end{tabular}
+
+\vspace{5mm}
+
+\begin{large}
+\begin{tabular}{l}
+Name\\ % Name
+Technische Universität Braunschweig\\ % Uni
+Matrikelnummer xxx % Matr. Nr.
+\end{tabular}
+
+\vspace{5mm}
+
+\begin{tabular}{ll}
+Ausgabedatum: & xxx\\ % Ausgabedatum der Aufgabenstellung eintragen
+Abgabedatum: & xxx\\ % Abgabedatum der Arbeit eintragen
+\end{tabular}
+
+\vspace{5mm}
+
+\begin{tabular}{ll}
+Erstprüfer: & Prof. Dr.-Ing. Ferit Küçükay\\ % Erstprüfer
+Zweitprüfer: & \\ % Zweitprüfer
+Betreuer: & % Betreuer
+\end{tabular}
+\end{large}
+
+\end{titlepage}
+
+% Leere Seite nach der Titelseite
+\newpage
+\thispagestyle{empty}
+\null
+
+% Aufgabenstellung, in das Verzeichnis dieser Datei kopieren
+\newpage
+%\includepdf[pages=1]{aufgabenstellung.pdf}
+
+% Selbstständigkeitserklärung
+\addchap*{Selbstständigkeitserklärung}
+\noindent Ich versichere an Eides statt, dass ich diese Diplomarbeit selbstständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel verwendet habe. Alle Stellen, die wörtlich oder sinngemäß aus anderen Quellen entnommen wurden, sind deutlich als solche gekennzeichnet. Diese Arbeit wurde in gleicher oder ähnlicher Form noch keiner anderen Prüfungsbehörde vorgelegt.
+
+\vspace{20mm}
+
+\noindent Braunschweig, xxx % Datum eintragen und in der gedruckten Arbeit persönlich unterschreiben
+
+% Inhaltsverzeichnis
+\clearpage
+\phantomsection
+\pdfbookmark[1]{Inhaltsverzeichnis}{toc}
+\tableofcontents
+
+% Abbildungsverzeichnis
+\newpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
+\listoffigures
+
+% Tabellenverzeichnis
+\newpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Tabellenverzeichnis}
+\listoftables
+
+% Formelverzeichnis
+\newpage
+\markboth{\nomname}{\nomname}
+\printnomenclature
+
+\mainmatter
+
+\addchap{Kurzfassung}
+
+% Kurze Inhaltsangabe der Arbeit (etwa 10 Zeilen)
+
+\chapter{Einleitung}
+
+\chapter{Kapitel 1}
+
+\section{Abschnitt 1}
+
+\subsection{Unterabschnitt 1}
+
+\section{Abschnitt 2}
+
+\chapter{Kapitel 2}
+ 
+\chapter{Zusammenfassung und Ausblick}
+
+% Literaturverzeichnis
+
+\newpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Literaturverzeichnis}
+\printbibliography[{title=Literaturverzeichnis}]
+
+\appendix
+
+\chapter{Anhang}
+
+\end{document}

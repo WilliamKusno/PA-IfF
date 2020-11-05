@@ -1,0 +1,10 @@
+Sehr geehrte Damen und Herren, 
+
+für das vergangene Sommersemester 2020 konnte das Gauß-IT-Zentrum eine campusweite Lizenz für Matlab bereitstellen, über die Sie und die Studierenden der TU Braunschweig auch auf privaten Geräten zur Nutzung von Matlab berechtigt waren. Mit Unterstützung des Vizepräsidenten für Digitalisierung und 
+Technologietransfer Manfred Krafczyk konnte diese Lizenz jetzt für vorerst ein Jahr verlängert werden, sodass Sie auch im Wintersemester 20/21 und Sommersemester 2021 auf Ihren privaten Geräten die Software ohne Einschränkungen nutzen dürfen. Eine Anleitung und weitere Informationen zur Campuslizenz finden Sie in unserem Wiki unter: 
+https://doku.rz.tu-bs.de/doku.php?id=software:matlab:campuslizenz. 
+Bitte geben Sie diese Information auch an Ihre Studierenden weiter, die Matlab für ihr Studium benötigen. 
+
+Mit freundlichen Grüßen 
+
+Ihre Benutzerbetreuung des Gauß-IT-Zentrums 
