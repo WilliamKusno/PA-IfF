@@ -3,7 +3,7 @@
 %%Init
 clc
 clear all %Workspace leeren
-cd('C:\Users\ohms\Desktop\Studentische Arbeiten\2021_PA_Getriebe\Gruppe2_VKM') %Öffne Projektordner
+cd('E:\Studium und Arbeit\Studienfächer\Semester 9\Projektarbeit\Repo\PA-IfF\Allgemein') %Öffne Projektordner
 
 %%Fahrzeugdaten, die im Modell verwendet werden
 cw=0.28; %Luftwiderstandsbeiwert
@@ -22,7 +22,7 @@ WLTP_t=[0:1800].'; %Zeitvektor (transponiert)
 
 
 %%Wirkungsgradkennfeld VKM
-load('C:\Users\ohms\Desktop\Studentische Arbeiten\2021_PA_Getriebe\Gruppe2_VKM\VKM.mat');
+load('E:\Studium und Arbeit\Studienfächer\Semester 9\Projektarbeit\Repo\PA-IfF\Allgemein');
 eta=VKM.eta;
 eta_n=VKM.n_axis;
 eta_M=VKM.M_axis;
