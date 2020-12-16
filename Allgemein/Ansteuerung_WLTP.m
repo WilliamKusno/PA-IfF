@@ -3,7 +3,7 @@
 %%Init
 clc
 clear all %Workspace leeren
-cd('E:\Studium und Arbeit\Studienfächer\Semester 9\Projektarbeit\Repo\PA-IfF\Allgemein') %Öffne Projektordner
+cd('E:\Studium und Arbeit\Studienfächer\Semester 9\Projektarbeit') %Öffne Projektordner
 
 %%Fahrzeugdaten, die im Modell verwendet werden
 cw=0.28; %Luftwiderstandsbeiwert
@@ -22,17 +22,34 @@ WLTP_t=[0:1800].'; %Zeitvektor (transponiert)
 
 
 %%Wirkungsgradkennfeld VKM
-load('E:\Studium und Arbeit\Studienfächer\Semester 9\Projektarbeit\Repo\PA-IfF\Allgemein');
+load('E:\Studium und Arbeit\Studienfächer\Semester 9\Projektarbeit\VKM.mat');
 eta=VKM.eta;
 eta_n=VKM.n_axis;
 eta_M=VKM.M_axis;
+P_Mot=2*pi().*transpose(VKM.full_load_M).*VKM.full_load_n./60./1000; %Berechnung der Leistung in kW
+
+figure(1)
+grid on                                                     %Zeigt Gitter in Diagramm an
+xlabel('Drehzahl in 1/min')                                 %Beschriftung x-Achse
+ylabel('Motormoment in Nm')                                 %Beschriftung y-Achse
+title ('M-n-Diagramm VKM')
+colorbar
+hold on
+contourf(eta_n, eta_M,eta, 'showtext','on')
+hold off 
+
+figure (2)
+plot (VKM.full_load_n, VKM.full_load_M, '--')               %Moment über Drehzahl
+hold on
+plot (VKM.full_load_n, P_Mot, 'LineWidth', 3)
+hold off
 
 
 %%Simulation starten und Ergebnisse in die Variable "Ergebnis" schreiben
 Ergebnis=sim('WLTP');
 
 %%Beispielhafter Plot des Geschwindkeit und der Antriebsleistung über der Zeit als der Simulation
-figure(1)
+figure(3)
 plot(Ergebnis.simout.time, Ergebnis.simout.Data(:,1), 'LineWidth', 2); %Geschwindigkeit in m/s über Zeit in s
 hold on %Plotte in diesselbe Figure
 P=2*pi().*Ergebnis.simout.Data(:,2).*Ergebnis.simout.Data(:,4)./60./1000; %Berechnng: Leistung in kW über Zeit in s (Punkte vor den Rechenzeichen erlauben Mulitplikation mit jedem einzelnen Eintrag des Vektors)
@@ -46,3 +63,4 @@ set(gca,'FontSize', 16); %Größe Achsenbeschriftung allgemein
 ylim([-10 50]); %yAchsengrenze
 xlim([0 1810]); %xAchsengrenzen
 xticks(0:300:1800); %xAchsenbeschriftung
+
