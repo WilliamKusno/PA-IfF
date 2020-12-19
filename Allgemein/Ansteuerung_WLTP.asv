@@ -73,6 +73,7 @@ u_E=fr*(mzul+mfzg)*g+40+cw*A*(rho/2)*(v/3.6).*(v/3.6);
 u_E_2=fr*(mzul+mfzg)*g+40+cw*A*(rho/2)*((v+15)/3.6).*((v+15)/3.6)+0.03*(mzul+mfzg)*g;
 Zmax=fr*(mzul+mfzg)*g+40+0.25*(mfzg+mzul)*g+cw*A*(rho/2)*(v/3.6).*(v/3.6);
 x=3.6*(P_Rad_max./v);
+x_2=3.6*(P_Rad_Mmax./v);
 
 figure(4)
 plot(v,u_E, '--')                %%Bedarfslinie auf der Ebene (F_St=0 , F_B=0)
@@ -82,5 +83,7 @@ hold on
 % plot(v,Zmax,'--')              %%Bedarfslinie mit max Steigung
 % hold on
 plot (v,x, 'LineWidth', 2)          %%Leistungsverlauf maximal
+% hold on
+% plot (v,x_2, 'LineWidth', 1)        %%Leistungsverlauf bei Mmax(n=4000)
 ylim([0 8000])
-hold off 
+ 
