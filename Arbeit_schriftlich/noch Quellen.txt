@@ -1,0 +1,3 @@
+- Schleppmethode
+- Zugkraft auf radebene Formel
+- Leistung mit geschwindigkeit Formel und Moment drehzahl
