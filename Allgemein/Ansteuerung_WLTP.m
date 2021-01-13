@@ -35,15 +35,16 @@ eta_n=VKM.n_axis;
 eta_M=VKM.M_axis;
 P_Mot=2*pi().*transpose(VKM.full_load_M).*VKM.full_load_n./(60*1000); %Berechnung der Leistung in kW
 
-% figure(1)
-% grid on                                                     %Zeigt Gitter in Diagramm an
-% xlabel('Drehzahl in 1/min')                                 %Beschriftung x-Achse
-% ylabel('Motormoment in Nm')                                 %Beschriftung y-Achse
-% title ('M-n-Diagramm VKM')
-% colorbar
-% hold on
-% contourf(eta_n, eta_M, eta, 'showtext','on')              % %Wirkungsgradkennfeld
-% hold off 
+figure(1)
+grid on                                                     %Zeigt Gitter in Diagramm an
+xlabel('Drehzahl in 1/min')                                 %Beschriftung x-Achse
+ylabel('Motormoment in Nm')                                 %Beschriftung y-Achse
+title ('Wirkungsgradkennfeld VKM')
+colorbar
+hold on
+contourf(eta_n, eta_M, eta, 'showtext','on')                %Wirkungsgradkennfeld
+xlim([900 6000])
+hold off 
 
 % figure (2)
 % plot (VKM.full_load_n, VKM.full_load_M, '--')               %Moment über Drehzahl
@@ -143,20 +144,22 @@ v2=((2*0.35*pi*VKM.full_load_n)/(i(2)*i_AG*60));
 % hold off
 
 %%Simulation starten und Ergebnisse in die Variable "Ergebnis" schreiben
-Ergebnis=sim('WLTP');
+% Ergebnis=sim('WLTP');
+% 
+% % % Beispielhafter Plot des Geschwindkeit und der Antriebsleistung über der Zeit als der Simulation
+% figure(3)
+% plot(Ergebnis.simout.time, Ergebnis.simout.Data(:,1), 'LineWidth', 2); %Geschwindigkeit in m/s über Zeit in s
+% hold on %Plotte in diesselbe Figure
+% P=2*pi().*Ergebnis.simout.Data(:,2).*Ergebnis.simout.Data(:,4)./60./1000; %Berechnng: Leistung in kW über Zeit in s (Punkte vor den Rechenzeichen erlauben Mulitplikation mit jedem einzelnen Eintrag des Vektors)
+% plot(Ergebnis.simout.time, movmean(P, 3), 'Color', 'r'); %Plot der Leistung mit gleitendem Mittelwertfilter über 3 Werte (glättet den Verlauf, Vorsicht mit solchen Spielereien!)
+% grid on %Gitter hinterlegen
+% hold off %keine weiteren Graphen in dieser Figure
+% legend('v_{fzg} in m/s', 'P_{an} in kW', 'Location', 'northwest'); %Legende oben links
+% title('Ergebnisse WLTP', 'FontSize', 20); %Titel der Graphik
+% xlabel('Zeit in s', 'FontSize', 16); %Titel x-Achse
+% set(gca,'FontSize', 16); %Größe Achsenbeschriftung allgemein
+% ylim([-10 50]); %yAchsengrenze
+% xlim([0 1810]); %xAchsengrenzen
+% xticks(0:300:1800); %xAchsenbeschriftung
 
-% % Beispielhafter Plot des Geschwindkeit und der Antriebsleistung über der Zeit als der Simulation
-figure(3)
-plot(Ergebnis.simout.time, Ergebnis.simout.Data(:,1), 'LineWidth', 2); %Geschwindigkeit in m/s über Zeit in s
-hold on %Plotte in diesselbe Figure
-P=2*pi().*Ergebnis.simout.Data(:,2).*Ergebnis.simout.Data(:,4)./60./1000; %Berechnng: Leistung in kW über Zeit in s (Punkte vor den Rechenzeichen erlauben Mulitplikation mit jedem einzelnen Eintrag des Vektors)
-plot(Ergebnis.simout.time, movmean(P, 3), 'Color', 'r'); %Plot der Leistung mit gleitendem Mittelwertfilter über 3 Werte (glättet den Verlauf, Vorsicht mit solchen Spielereien!)
-grid on %Gitter hinterlegen
-hold off %keine weiteren Graphen in dieser Figure
-legend('v_{fzg} in m/s', 'P_{an} in kW', 'Location', 'northwest'); %Legende oben links
-title('Ergebnisse WLTP', 'FontSize', 20); %Titel der Graphik
-xlabel('Zeit in s', 'FontSize', 16); %Titel x-Achse
-set(gca,'FontSize', 16); %Größe Achsenbeschriftung allgemein
-ylim([-10 50]); %yAchsengrenze
-xlim([0 1810]); %xAchsengrenzen
-xticks(0:300:1800); %xAchsenbeschriftung
+
