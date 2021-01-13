@@ -3,7 +3,7 @@
 %%Init
 clc
 clear all %Workspace leeren
-cd('E:\Studium und Arbeit\Studienfächer\Semester 9\Projektarbeit\Repo\PA-IfF\Allgemein') %Öffne Projektordner
+cd('F:\Projektarbeit\PA-IfF\Allgemein') %Öffne Projektordner
 
 %%Fahrzeugdaten, die im Modell verwendet werden
 cw=0.28; %Luftwiderstandsbeiwert
@@ -21,6 +21,7 @@ eta_diff=0.99; %Differentialwirkungsgrad
 mzul=475;       %maximal zulässiges Gewicht
 Fr=40;          %Reibungskraft
 i_AG=3.825;     %Achsübersetzung
+n_u=900;        %Leerlaufdrehzahl
 
 
 %%WLTP
@@ -29,7 +30,7 @@ WLTP_t=[0:1800].'; %Zeitvektor (transponiert)
 
 
 %%Wirkungsgradkennfeld VKM
-load('E:\Studium und Arbeit\Studienfächer\Semester 9\Projektarbeit\Repo\PA-IfF\Allgemein\VKM.mat');
+load('F:\Projektarbeit\PA-IfF\Allgemein\VKM.mat');
 eta=VKM.eta;
 eta_n=VKM.n_axis;
 eta_M=VKM.M_axis;
