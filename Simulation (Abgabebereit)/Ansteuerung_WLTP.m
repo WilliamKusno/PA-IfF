@@ -19,8 +19,8 @@ b_e=8.5; %Benzinenergie auf einen Liter
 
 %%Fahrmodus
 modus=1; %0=max_Drehmoment, 1=Verbrauchseffizient, 2=max_Drehzahl
-buf_M=50; %Schalttoleranz Drehmoment Fahrmodus
-buf_D=200; %Schalttoleranz Drehzahl Fahrmodus
+buf_M=20; %Schalttoleranz Drehmoment Fahrmodus (
+buf_D=200; %Schalttoleranz Drehzahl Fahrmodus (muss kleiner als Minimaldrehzahl 900 sein)
 buf_E=0.02; %Schalttoleranz Effizienter Fahrmodus (muss kleiner als minimaler Wirkungsgrad 0.1 sein)
 
 %%Annahmen
@@ -29,7 +29,6 @@ mzul=475;       %maximal zulässiges Gewicht
 Fr=40;          %Reibungskraft
 i_AG=3.825;     %Achsübersetzung
 n_u=900;        %Leerlaufdrehzahl
-       %Energie für einen Liter Benzin
 
 
 %%WLTP
