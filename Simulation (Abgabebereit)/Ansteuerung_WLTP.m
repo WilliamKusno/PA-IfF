@@ -3,7 +3,7 @@
 %%Init
 clc
 clear; %Workspace leeren
-cd('C:\Users\kusno\Desktop\VKM') %Öffne Projektordner
+cd('C:\Users\kusno\Desktop\Simulation (Abgabebereit)') %Öffne Projektordner
 
 %%Fahrzeugdaten, die im Modell verwendet werden
 cw=0.28; %Luftwiderstandsbeiwert
@@ -18,10 +18,10 @@ eta_getr=0.96; %Getriebewirkungsgrad
 b_e=8.5; %Benzinenergie auf einen Liter
 
 %%Fahrmodus
-modus=2; %0=max_Drehmoment, 1=Verbrauchseffizient, 2=max_Drehzahl
-buf_M=10; %Schalttoleranz Drehmoment Fahrmodus
+modus=1; %0=max_Drehmoment, 1=Verbrauchseffizient, 2=max_Drehzahl
+buf_M=50; %Schalttoleranz Drehmoment Fahrmodus
 buf_D=200; %Schalttoleranz Drehzahl Fahrmodus
-buf_E=0.02; %SChalttoleranz Effizienter Fahrmodus
+buf_E=0.02; %Schalttoleranz Effizienter Fahrmodus (muss kleiner als minimaler Wirkungsgrad 0.1 sein)
 
 %%Annahmen
 eta_diff=0.99; %Differentialwirkungsgrad
@@ -38,7 +38,7 @@ WLTP_t=[0:1800].'; %Zeitvektor (transponiert)
 
 
 %%Wirkungsgradkennfeld VKM
-load('C:\Users\kusno\Desktop\VKM\VKM.mat');
+load('C:\Users\kusno\Desktop\Simulation (Abgabebereit)\VKM.mat');
 eta=VKM.eta;
 eta_n=VKM.n_axis;
 eta_M=VKM.M_axis;
