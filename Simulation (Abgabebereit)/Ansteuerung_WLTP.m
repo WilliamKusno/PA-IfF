@@ -19,9 +19,9 @@ b_e=8.5; %Benzinenergie auf einen Liter
 
 %%Fahrmodus
 modus=1; %0=max_Drehmoment, 1=Verbrauchseffizient, 2=max_Drehzahl
-buf_M=20; %Schalttoleranz Drehmoment Fahrmodus (
-buf_D=200; %Schalttoleranz Drehzahl Fahrmodus (muss kleiner als Minimaldrehzahl 900 sein)
-buf_E=0.02; %Schalttoleranz Effizienter Fahrmodus (muss kleiner als minimaler Wirkungsgrad 0.1 sein)
+buf_M=10; %Schalttoleranz Drehmoment Fahrmodus 
+buf_D=200; %Schalttoleranz Drehzahl Fahrmodus 
+buf_E=0.02; %Schalttoleranz Effizienter Fahrmodus
 
 %%Annahmen
 eta_diff=0.99; %Differentialwirkungsgrad
