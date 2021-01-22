@@ -83,3 +83,36 @@ v1_6=(pi*VKM.full_load_n*rdyn)*3.6/(30*i_AG*i(6));
 
 %%Simulation starten und Ergebnisse in die Variable "Ergebnis" schreiben
 Ergebnis=sim('WLTP');
+
+%plots
+% figure(1)
+% plot(Ergebnis.Gaenge.time, Ergebnis.Gaenge.Data(:,1), 'LineWidth', 2);
+% ylim([0.5 5]); %yAchsengrenze
+% xlim([800 1200]); %xAchsengrenzen
+% xlabel('Zeit in s', 'FontSize', 25); %Titel x-Achse
+% ylabel('Gangübersetzung', 'FontSize', 25); %Titel x-Achse
+% set(gca,'FontSize', 25); %Größe Achsenbeschriftung allgemein
+% hold off
+% 
+% figure(2)
+% plot(Ergebnis.Ges_E_verb_100km.time, Ergebnis.Ges_E_verb_100km.Data(:,1), 'LineWidth', 2);
+% ylim([0 80]); %yAchsengrenze
+% xlim([0 1800]); %xAchsengrenzen
+% xticks(0:300:1800); %xAchsenbeschriftung
+% xlabel('Zeit in s', 'FontSize', 25); %Titel x-Achse
+% ylabel('Energieverbrauch in kWh/100km', 'FontSize', 25); %Titel x-Achse
+% set(gca,'FontSize', 25); %Größe Achsenbeschriftung allgemein
+% hold off
+% 
+% figure(3)
+% [C,h] = contourf(eta_n, eta_M, eta);
+% clabel(C,h,'FontSize',25,'Color','k')
+% hold on
+% plot(VKM.full_load_n,VKM.full_load_M,"k", 'LineWidth',2)
+% plot(Ergebnis.simout.data(:,4),Ergebnis.simout.data(:,2),"y.", 'MarkerSize', 30)
+% xlabel('Drehzahl in 1/min')                                
+% ylabel('Motormoment in Nm')                                
+% xlim([900 6000])
+% set(gca,'FontSize', 25); %Größe Achsenbeschriftung allgemein
+% hold off
+
